@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Counter</title>
+</head>
+<style>
+	*{
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+	}
+	body{
+		height: 100vh;
+		font-family: Arial, Helvetica, sans-serif;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+	.container{
+		height: 50%;
+		width: 50%;
+		align-items: center;
+		text-align: center;
+	}
+	.display{
+		text-align: center;
+		font-size: 48px;
+		margin: 28px;
+		padding: 10px;
+	}
+	.btn{
+		text-align: center;
+	}
+	.btn button{
+		padding: 10px 28px;
+		font-weight: 600;
+		font-size: 20px;
+		margin: 10px;
+		outline: none;
+		cursor: pointer; 
+	}
+	.stp{
+		background-color: #ff1a1a;
+	}
+	.str{
+		background-color: #1aff1a;
+	}
+	.res{
+		background-color: #ccf2ff;
+	}
+</style>
+<body>
+	<div class="container"> 
+		<div class="display">
+			<h1 class="num"><span id="minutess">00</span>:<span id="seconds">00</span>:<span id="tens">00</span></p></h1>
+		</div>
+		<div class="btn">
+			<button class="str" >START</button>
+			<button class="stp" >STOP</button>
+			<button class="res">RESET</button>
+		</div>
+	</div>
+
+<script>
+	  let start=document.querySelector(".str");
+	  let stop=document.querySelector(".stp");
+	  let r=document.querySelector(".res");
+	  let nm=document.querySelector(".num") ;
+
+	  let seconds = 00; 
+	  let tens = 00; 
+	  let minutess = 00;
+	  let appendTens = document.getElementById("tens");
+	  let appendSeconds = document.getElementById("seconds");
+	  let appendminutes = document.getElementById("minutess");
+	  let Interval ;
+
+	  start.onclick = function() {
+	  	clearInterval(Interval)
+	    Interval = setInterval(function startTimer () {
+			tens++; 
+							    
+			if(tens < 9){
+					appendTens.innerHTML = "0" + tens;
+			}
+							    
+			if (tens > 9){
+					appendTens.innerHTML = tens;
+							      
+			} 
+							    
+			if (tens > 99) {
+					seconds++;
+					appendSeconds.innerHTML = "0" + seconds;
+					tens = 0;
+					appendTens.innerHTML = "0" + 0;
+		 	}
+							    
+			if (seconds > 9){
+					appendSeconds.innerHTML= seconds ;
+			}
+
+			if (seconds > 59) {
+					minutess++;
+					appendminutes.innerHTML = "0" + minutess;
+					seconds = 0;
+					appendSeconds.innerHTML = "0" + 0;
+			}
+							  
+		}, 10)
+	 }
+	  
+	  stop.onclick = function() {
+	    clearInterval(Interval);
+	  }
+	  
+
+	  r.onclick = function() {
+		clearInterval(Interval);
+		tens = "00";
+		seconds = "00";
+		minutess = "00" ;
+		appendTens.innerHTML = tens;
+		appendSeconds.innerHTML = seconds;
+		appendminutes.innerHTML = minutess;
+	  }
+
+</script>
+</body>
+</html>
